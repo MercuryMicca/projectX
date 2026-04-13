@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { use, useEffect, useMemo, useRef, useState } from "react";
 import ChoiceButton from "../../../components/ChoiceButton";
 import StatusBar from "../../../components/StatusBar";
 import {
@@ -24,7 +24,8 @@ type PlayPageProps = {
 };
 
 export default function PlayPage({ params }: PlayPageProps) {
-  const [sessionID, setSessionID] = useState("");
+  const { sessionID } = use(params);
+
   const [currentNodeId, setCurrentNodeId] = useState("wakeup");
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -68,12 +69,15 @@ export default function PlayPage({ params }: PlayPageProps) {
         setIsLoading(true);
         setError("");
 
-        const resolvedParams = await params;
-        const id = resolvedParams.sessionID;
-        setSessionID(id);
+        const response = await fetch(`/api/session/${sessionID}`);
+        const text = await response.text();
 
-        const response = await fetch(`/api/session/${id}`);
-        const data = await response.json();
+        let data: any;
+        try {
+          data = JSON.parse(text);
+        } catch {
+          throw new Error("Session API did not return valid JSON");
+        }
 
         if (!response.ok || !data.success) {
           throw new Error(data.error || "Failed to load session");
@@ -90,14 +94,16 @@ export default function PlayPage({ params }: PlayPageProps) {
         setSelectedChoiceId(null);
       } catch (err) {
         console.error(err);
-        setError("Failed to load session.");
+        setError(err instanceof Error ? err.message : "Failed to load session.");
       } finally {
         setIsLoading(false);
       }
     }
 
-    loadSession();
-  }, [params]);
+    if (sessionID) {
+      loadSession();
+    }
+  }, [sessionID]);
 
   useEffect(() => {
     if (!isAudioEnabled && audioRef.current) {
@@ -138,7 +144,14 @@ export default function PlayPage({ params }: PlayPageProps) {
         }),
       });
 
-      const data = await response.json();
+      const text = await response.text();
+
+      let data: any;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        throw new Error("Session update API did not return valid JSON");
+      }
 
       if (!response.ok || !data.success) {
         throw new Error(data.error || "Failed to update session");
@@ -158,8 +171,8 @@ export default function PlayPage({ params }: PlayPageProps) {
 
   if (isLoading) {
     return (
-      <main className="min-h-screen bg-slate-950 text-white px-6 py-10">
-        <div className="max-w-5xl mx-auto">
+      <main className="min-h-screen bg-slate-950 px-6 py-10 text-white">
+        <div className="mx-auto max-w-5xl">
           <p className="text-white/70">Loading mission...</p>
         </div>
       </main>
@@ -168,8 +181,8 @@ export default function PlayPage({ params }: PlayPageProps) {
 
   if (error || !gameState) {
     return (
-      <main className="min-h-screen bg-slate-950 text-white px-6 py-10">
-        <div className="max-w-5xl mx-auto">
+      <main className="min-h-screen bg-slate-950 px-6 py-10 text-white">
+        <div className="mx-auto max-w-5xl">
           <p className="text-red-400">{error || "Session not found."}</p>
         </div>
       </main>
@@ -178,7 +191,7 @@ export default function PlayPage({ params }: PlayPageProps) {
 
   return (
     <main
-      className="min-h-screen text-white px-6 py-10 bg-cover bg-center"
+      className="min-h-screen bg-cover bg-center px-6 py-10 text-white"
       style={{
         backgroundImage: `url(${currentNode.backgroundImage})`,
       }}
@@ -192,16 +205,16 @@ export default function PlayPage({ params }: PlayPageProps) {
 
       <div className="fixed inset-0 bg-black/60 backdrop-blur-[2px]" />
 
-      <div className="relative max-w-5xl mx-auto space-y-6">
+      <div className="relative mx-auto max-w-5xl space-y-6">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-white/50 mb-2">
+            <p className="mb-2 text-sm uppercase tracking-[0.2em] text-white/50">
               ProjectX
             </p>
 
             <h1 className="text-3xl font-bold">A Day as an Astronaut</h1>
 
-            <p className="text-white/60 text-base md:text-lg mt-2">
+            <p className="mt-2 text-base text-white/60 md:text-lg">
               {currentNode.chapterId === "chapter1"
                 ? `Chapter 1 — ${currentNode.sceneTitle}`
                 : currentNode.chapterId === "chapter2"
@@ -217,6 +230,7 @@ export default function PlayPage({ params }: PlayPageProps) {
           </div>
 
           <button
+            type="button"
             onClick={async () => {
               if (!audioRef.current) return;
 
@@ -247,14 +261,12 @@ export default function PlayPage({ params }: PlayPageProps) {
         />
 
         <div className="rounded-2xl border border-white/10 bg-black/40 p-6 shadow-2xl">
-          <p className="text-sm text-white/50 mb-3">{currentNode.sceneTitle}</p>
-          <p className="text-lg leading-8 text-white/95">
-            {currentNode.narration}
-          </p>
+          <p className="mb-3 text-sm text-white/50">{currentNode.sceneTitle}</p>
+          <p className="text-lg leading-8 text-white/95">{currentNode.narration}</p>
         </div>
 
         <div className="rounded-2xl border border-white/10 bg-black/40 p-6 shadow-2xl">
-          <p className="text-sm text-white/50 mb-4">
+          <p className="mb-4 text-sm text-white/50">
             {currentNode.choices.length > 0
               ? "What do you do next?"
               : "Result unlocked"}
@@ -264,12 +276,17 @@ export default function PlayPage({ params }: PlayPageProps) {
             <div className="space-y-3">
               {currentNode.choices.map((choice) => (
                 <div key={choice.id} className="space-y-2">
-                  <div onClick={() => handleChoice(choice)}>
+                  <button
+                    type="button"
+                    onClick={() => handleChoice(choice)}
+                    className="block w-full text-left"
+                    disabled={isSaving}
+                  >
                     <ChoiceButton label={choice.label} />
-                  </div>
+                  </button>
 
                   {selectedChoiceId === choice.id && choice.flavor && (
-                    <p className="text-sm text-white/60 px-1">
+                    <p className="px-1 text-sm text-white/60">
                       {choice.flavor}
                     </p>
                   )}
@@ -279,7 +296,7 @@ export default function PlayPage({ params }: PlayPageProps) {
           ) : (
             <a
               href={`/result/${sessionID}`}
-              className="inline-block rounded-xl bg-white text-black px-6 py-3 font-medium hover:opacity-90"
+              className="inline-block rounded-xl bg-white px-6 py-3 font-medium text-black hover:opacity-90"
             >
               View Result
             </a>
