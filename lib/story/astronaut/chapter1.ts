@@ -36,8 +36,9 @@ export const astronautChapter1StoryNodes: Record<string, StoryNode> = {
         label: "Unzip immediately and move into work mode",
         nextNodeId: "first_choice",
         effects: {
-          missionProgress: 4,
-          energy: -2,
+          missionProgress: 7,
+          energy: -4,
+          stress: 2,
         },
         flavor:
           "You choose discipline first. The body can catch up later.",
@@ -47,8 +48,9 @@ export const astronautChapter1StoryNodes: Record<string, StoryNode> = {
         label: "Push gently toward the window and steal one look at Earth",
         nextNodeId: "first_choice",
         effects: {
-          stress: -4,
-          energy: 2,
+          stress: -6,
+          energy: 4,
+          missionProgress: -1,
         },
         flavor:
           "You let yourself remember where you are before becoming useful again.",
@@ -58,8 +60,8 @@ export const astronautChapter1StoryNodes: Record<string, StoryNode> = {
         label: "Pull up the day’s task summary before leaving your sleep station",
         nextNodeId: "first_choice",
         effects: {
-          missionProgress: 3,
-          teamTrust: 2,
+          missionProgress: 5,
+          teamTrust: 4,
         },
         flavor:
           "You want orientation before motion. Order before momentum.",
@@ -80,8 +82,8 @@ export const astronautChapter1StoryNodes: Record<string, StoryNode> = {
         label: "Tidy your sleep area and secure your personal gear first",
         nextNodeId: "microgravity",
         effects: {
-          teamTrust: 2,
-          missionProgress: 2,
+          teamTrust: 5,
+          missionProgress: 4,
         },
         flavor:
           "You believe professionalism starts with what nobody claps for.",
@@ -91,8 +93,8 @@ export const astronautChapter1StoryNodes: Record<string, StoryNode> = {
         label: "Head straight toward the hygiene area",
         nextNodeId: "microgravity",
         effects: {
-          energy: 1,
-          stress: -1,
+          energy: 4,
+          stress: -4,
         },
         flavor:
           "You reset the body so the mind can follow.",
@@ -102,8 +104,9 @@ export const astronautChapter1StoryNodes: Record<string, StoryNode> = {
         label: "Send a quick “awake and nominal” update to the ground",
         nextNodeId: "microgravity",
         effects: {
-          teamTrust: 4,
-          missionProgress: 1,
+          teamTrust: 7,
+          missionProgress: 3,
+          energy: -1,
         },
         flavor:
           "In orbit, confirmation is part of the work.",
@@ -124,8 +127,8 @@ export const astronautChapter1StoryNodes: Record<string, StoryNode> = {
         label: "Catch a handrail and stabilize yourself before moving on",
         nextNodeId: "chapter1_end",
         effects: {
-          stress: -2,
-          missionProgress: 2,
+          stress: -4,
+          missionProgress: 4,
         },
         flavor:
           "You choose control over style.",
@@ -135,8 +138,9 @@ export const astronautChapter1StoryNodes: Record<string, StoryNode> = {
         label: "Use the drift and redirect yourself into the next module",
         nextNodeId: "chapter1_end",
         effects: {
-          missionProgress: 3,
-          energy: -1,
+          missionProgress: 6,
+          energy: -3,
+          stress: 1,
         },
         flavor:
           "You let the station’s physics work with you instead of against you.",
@@ -146,8 +150,9 @@ export const astronautChapter1StoryNodes: Record<string, StoryNode> = {
         label: "Laugh it off and make a quick joke over comms",
         nextNodeId: "chapter1_end",
         effects: {
-          stress: -3,
-          teamTrust: 1,
+          stress: -5,
+          teamTrust: 4,
+          missionProgress: 1,
         },
         flavor:
           "Competence is useful. So is keeping the room human.",

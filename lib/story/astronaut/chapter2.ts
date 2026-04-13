@@ -14,8 +14,9 @@ export const astronautChapter2StoryNodes: Record<string, StoryNode> = {
         label: "Follow the standard routine carefully, step by step",
         nextNodeId: "hygiene_detail",
         effects: {
-          teamTrust: 2,
-          stress: -2,
+          teamTrust: 5,
+          stress: -4,
+          missionProgress: 2,
         },
         flavor:
           "You treat routine as a form of discipline, not inconvenience.",
@@ -25,8 +26,9 @@ export const astronautChapter2StoryNodes: Record<string, StoryNode> = {
         label: "Move quickly and compress the routine to save time",
         nextNodeId: "hygiene_detail",
         effects: {
-          missionProgress: 3,
-          stress: 2,
+          missionProgress: 6,
+          stress: 4,
+          energy: -1,
         },
         flavor:
           "You are already thinking about the schedule more than the moment.",
@@ -36,8 +38,9 @@ export const astronautChapter2StoryNodes: Record<string, StoryNode> = {
         label: "Take an extra moment to log how your body feels this morning",
         nextNodeId: "hygiene_detail",
         effects: {
-          missionProgress: 2,
-          teamTrust: 2,
+          missionProgress: 4,
+          teamTrust: 4,
+          stress: -1,
         },
         flavor:
           "You know that in space, small body signals deserve respect.",
@@ -58,8 +61,8 @@ export const astronautChapter2StoryNodes: Record<string, StoryNode> = {
         label: "Pause and secure everything before moving on",
         nextNodeId: "breakfast",
         effects: {
-          teamTrust: 2,
-          missionProgress: 2,
+          teamTrust: 5,
+          missionProgress: 4,
         },
         flavor:
           "Professionalism begins in the quiet spaces where nobody is watching.",
@@ -69,8 +72,9 @@ export const astronautChapter2StoryNodes: Record<string, StoryNode> = {
         label: "Adjust smoothly and keep moving without overthinking it",
         nextNodeId: "breakfast",
         effects: {
-          missionProgress: 3,
-          energy: -1,
+          missionProgress: 6,
+          energy: -3,
+          stress: 1,
         },
         flavor:
           "You let adaptability do part of the work for you.",
@@ -80,8 +84,8 @@ export const astronautChapter2StoryNodes: Record<string, StoryNode> = {
         label: "Take one slow breath and let the rhythm of the station settle you",
         nextNodeId: "breakfast",
         effects: {
-          stress: -3,
-          energy: 1,
+          stress: -5,
+          energy: 3,
         },
         flavor:
           "The station is easier to live in when you stop trying to rush gravity back into it.",
@@ -102,8 +106,9 @@ export const astronautChapter2StoryNodes: Record<string, StoryNode> = {
         label: "Choose the higher-energy option and prepare for a long work block",
         nextNodeId: "toilet",
         effects: {
-          energy: 6,
-          stress: 1,
+          energy: 7,
+          stress: 2,
+          missionProgress: 1,
         },
         flavor:
           "You are feeding the schedule, not the mood.",
@@ -113,8 +118,8 @@ export const astronautChapter2StoryNodes: Record<string, StoryNode> = {
         label: "Choose something lighter to keep your body feeling stable",
         nextNodeId: "toilet",
         effects: {
-          energy: 3,
-          stress: -2,
+          energy: 4,
+          stress: -4,
         },
         flavor:
           "You trust steadiness more than brute fuel.",
@@ -124,8 +129,9 @@ export const astronautChapter2StoryNodes: Record<string, StoryNode> = {
         label: "Eat while reviewing the task timeline again",
         nextNodeId: "toilet",
         effects: {
-          missionProgress: 4,
-          energy: 1,
+          missionProgress: 6,
+          energy: 2,
+          stress: 1,
         },
         flavor:
           "Even breakfast becomes part of preparation when the day is tight.",
@@ -146,8 +152,9 @@ export const astronautChapter2StoryNodes: Record<string, StoryNode> = {
         label: "Do it properly, with full attention to procedure",
         nextNodeId: "chapter2_end",
         effects: {
-          teamTrust: 2,
-          stress: -1,
+          teamTrust: 5,
+          stress: -3,
+          missionProgress: 2,
         },
         flavor:
           "You respect the system even when the moment feels undignified.",
@@ -157,8 +164,9 @@ export const astronautChapter2StoryNodes: Record<string, StoryNode> = {
         label: "Try to move through it quickly and get on with the day",
         nextNodeId: "chapter2_end",
         effects: {
-          missionProgress: 1,
-          stress: 3,
+          missionProgress: 4,
+          stress: 5,
+          teamTrust: -2,
         },
         flavor:
           "You push forward, but the station notices impatience.",
@@ -168,8 +176,9 @@ export const astronautChapter2StoryNodes: Record<string, StoryNode> = {
         label: "Accept it plainly: this is part of the profession too",
         nextNodeId: "chapter2_end",
         effects: {
-          stress: -2,
-          energy: 1,
+          stress: -4,
+          energy: 3,
+          teamTrust: 2,
         },
         flavor:
           "Not every act of professionalism looks heroic.",
@@ -177,22 +186,22 @@ export const astronautChapter2StoryNodes: Record<string, StoryNode> = {
     ],
   },
 
-    chapter2_end: {
+  chapter2_end: {
     id: "chapter2_end",
     chapterId: "chapter2",
     sceneTitle: "Morning Complete",
     backgroundImage: "/images/astronaut/hygiene-breakfast.jpg",
     narration:
-        "Your morning routine is complete. Nothing dramatic has happened, and yet you already feel the difference between visiting orbit in imagination and living inside its rules. You have not even started the day’s real work, but the clock has moved anyway. Somewhere on the timeline ahead: system checks, experiment prep, exercise, coordination. The station is done waking up with you. It expects you to begin.",
+      "Your morning routine is complete. Nothing dramatic has happened, and yet you already feel the difference between visiting orbit in imagination and living inside its rules. You have not even started the day’s real work, but the clock has moved anyway. Somewhere on the timeline ahead: system checks, experiment prep, exercise, coordination. The station is done waking up with you. It expects you to begin.",
     choices: [
-        {
+      {
         id: "chapter2-to-chapter3",
         label: "Continue to daily briefing",
         nextNodeId: "briefing_start",
         effects: {},
         flavor:
-            "The ordinary part of the morning is over. The workday is ready to take shape.",
-        },
+          "The ordinary part of the morning is over. The workday is ready to take shape.",
+      },
     ],
-    },
+  },
 };

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 export async function POST() {
@@ -7,10 +7,10 @@ export async function POST() {
       data: {
         theme: "astronaut_day_v1",
         currentChapter: "wakeup",
-        missionProgress: 24,
-        stress: 18,
-        teamTrust: 56,
-        energy: 72,
+        missionProgress: 50,
+        stress: 50,
+        teamTrust: 50,
+        energy: 50,
         status: "active",
       },
     });
@@ -25,8 +25,7 @@ export async function POST() {
     return NextResponse.json(
       {
         success: false,
-        error:
-          error instanceof Error ? error.message : "Failed to create session",
+        error: "Failed to create session",
       },
       { status: 500 }
     );

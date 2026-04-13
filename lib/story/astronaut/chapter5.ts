@@ -7,7 +7,7 @@ export const astronautChapter5StoryNodes: Record<string, StoryNode> = {
     sceneTitle: "Science Mission",
     backgroundImage: "/images/astronaut/science-mission.jpg",
     narration:
-      "The experiment module carries a different kind of silence. The station still hums around you — fans, systems, circulation, the quiet proof that a machine is holding human life together — but here the purpose shifts. Earlier, you were protecting function. Here, you are protecting meaning. Sample containers sit secured in their rack, one edge silvered by a trace of condensation. Through your gloves, every motion feels half a beat slower than instinct wants it to be. You know better than to resent that. Science has never cared about how quickly a hand wishes to move. Only whether it moved well enough to be trusted.",
+      "The experiment rack is already powered and waiting. Earlier today, your job was to keep the station functioning. Here, the purpose shifts slightly: now your job is to keep the work meaningful. A sample container sits under the task light with a thin line of condensation on one edge. Inside your gloves, your fingers feel just clumsy enough to be irritating. That is normal. Precision in orbit rarely looks elegant. Most of the time, it just looks patient.",
     choices: [
       {
         id: "science-follow-steps",
@@ -18,29 +18,29 @@ export const astronautChapter5StoryNodes: Record<string, StoryNode> = {
           teamTrust: 2,
         },
         flavor:
-          "Good science is not elegance. It is whether you respected the seventh step as much as the first.",
+          "Science is not a beautiful idea. Science is whether you respected step seven as much as step one.",
       },
       {
         id: "science-optimize-flow",
-        label: "Quickly read through and optimize the sequence your own way",
+        label: "Read through the full sequence quickly, then optimize the flow",
         nextNodeId: "science_deviation",
         effects: {
           missionProgress: 4,
           stress: 2,
         },
         flavor:
-          "You trust your competence enough to bend the rhythm, even while knowing science punishes vanity.",
+          "You trust your own rhythm. Science, unfortunately, does not always share that trust.",
       },
       {
         id: "science-check-sample",
-        label: "Confirm the most sensitive sample conditions first",
+        label: "Check the most sensitive sample conditions first",
         nextNodeId: "science_deviation",
         effects: {
           missionProgress: 4,
           stress: -1,
         },
         flavor:
-          "You know a whole experiment can appear healthy while one fragile detail quietly decides its fate.",
+          "A whole experiment can look healthy while one tiny detail is quietly preparing to betray it.",
       },
     ],
   },
@@ -51,7 +51,7 @@ export const astronautChapter5StoryNodes: Record<string, StoryNode> = {
     sceneTitle: "Unexpected Reading",
     backgroundImage: "/images/astronaut/science-mission.jpg",
     narration:
-      "One data point comes back wrong — not dramatically, not catastrophically, only slightly outside the shape you hoped to see. The number is close enough to tempt indifference and far enough to forbid it. This is the part of science most people never imagine: not discovery, but discipline; not brilliance, but restraint. You feel the familiar pull to explain it away, to keep momentum, to preserve the beauty of an uninterrupted run. But beauty is not the standard here. Integrity is. Not every deviation deserves alarm. But every deviation deserves respect.",
+      "One reading comes back slightly off. Not disastrously wrong. Not politely ignorable either. Just wrong enough to become annoying. The number sits there on the display with the maddening calm of something that has no intention of explaining itself. This is the part of science people rarely romanticize: not discovery, but restraint. Not brilliance, but refusing to lie to yourself just because you want the run to stay clean.",
     choices: [
       {
         id: "deviation-pause-check",
@@ -63,29 +63,29 @@ export const astronautChapter5StoryNodes: Record<string, StoryNode> = {
           stress: -1,
         },
         flavor:
-          "You would rather lose a little time than let uncertainty borrow authority it has not earned.",
+          "Before you assign meaning to the number, make sure it has actually earned one.",
       },
       {
         id: "deviation-continue-log",
-        label: "Continue the run and record the anomaly in detail",
+        label: "Continue the run and log the anomaly in full detail",
         nextNodeId: "science_wrap",
         effects: {
           missionProgress: 5,
           stress: 2,
         },
         flavor:
-          "You choose continuity, but only with the honesty to let the deviation stay visible.",
+          "Not every deviation deserves panic. Every deviation deserves honesty.",
       },
       {
         id: "deviation-call-ground",
-        label: "Contact the ground immediately and wait for guidance",
+        label: "Call the ground and wait for guidance before proceeding",
         nextNodeId: "science_wrap",
         effects: {
           teamTrust: 5,
           missionProgress: 1,
         },
         flavor:
-          "You trade speed for shared certainty, and accept that confidence does not have to be solitary.",
+          "Fast is useful. Shared confidence is usually more useful.",
       },
     ],
   },
@@ -96,29 +96,29 @@ export const astronautChapter5StoryNodes: Record<string, StoryNode> = {
     sceneTitle: "Wrap-Up",
     backgroundImage: "/images/astronaut/science-mission.jpg",
     narration:
-      "The run closes quietly. Data is logged. Surfaces are secured. Containers return to their places with the small, satisfying finality of work done properly. There is still a little time left in the day — not enough for grandeur, enough for intention. This is often what a meaningful day becomes in orbit: not one great triumph, but a series of things finished with care. You can close the day forward, close it practically, or let yourself reclaim one minute that belongs less to procedure and more to being alive inside all this machinery.",
+      "The experiment block closes in the least cinematic way possible: clips secured, surfaces cleaned, data saved, containers back where they belong. And yet that small lack of drama is exactly what makes it satisfying. Good work in orbit often looks unimpressive from the outside. Inside it, though, you can feel the difference between something merely finished and something properly closed. There is still a little time left in the day. Enough to use well. Not enough to pretend it doesn't matter.",
     choices: [
       {
         id: "wrap-debrief",
-        label: "Write today’s debrief and tomorrow’s plan first",
+        label: "Write today’s debrief and tomorrow’s notes first",
         nextNodeId: "final_question",
         effects: {
           missionProgress: 4,
           teamTrust: 2,
         },
         flavor:
-          "You believe the day is not truly complete until what it taught can outlive the day itself.",
+          "A task is not really finished until someone has made it useful for the next person — even if that person is also you.",
       },
       {
         id: "wrap-supplies",
-        label: "Confirm supplies and consumables before closing out",
+        label: "Check remaining supplies and consumables before closing out",
         nextNodeId: "final_question",
         effects: {
           missionProgress: 3,
           teamTrust: 3,
         },
         flavor:
-          "You understand that tomorrow is protected by the quiet seriousness of what you verify today.",
+          "A surprising amount of stability is just careful people counting boring things on time.",
       },
       {
         id: "wrap-earth",
@@ -129,7 +129,7 @@ export const astronautChapter5StoryNodes: Record<string, StoryNode> = {
           energy: 3,
         },
         flavor:
-          "You do not go to the window because you have earned beauty. You go because perspective is also a form of maintenance.",
+          "You are not avoiding work. You are briefly remembering what all this work is for.",
       },
     ],
   },
@@ -140,48 +140,48 @@ export const astronautChapter5StoryNodes: Record<string, StoryNode> = {
     sceneTitle: "Night Cycle",
     backgroundImage: "/images/astronaut/earth-window.jpg",
     narration:
-      "The lights begin their slow shift toward sleep mode. Nothing in the station truly stops; it only changes rhythm. The same is true of you. You did not save the world today. You did something quieter, and perhaps more difficult: you helped a fragile system remain worthy of trust for one more day, far above the people it ultimately serves. There is dignity in that, even if no one ever sees it clearly from the ground. Before the day closes completely, one question remains — not about what happened, but about what it meant.",
+      "The lights begin their slow shift toward night mode. The station does not really sleep; it just lowers its voice. Maybe that is true of people up here too. You did not save the world today. You did something quieter than that. You helped a fragile system remain useful, honest, and alive one more day above the planet that sent you here. Before the day closes completely, one thought stays with you longer than the others.",
     choices: [
       {
         id: "result-calm-operator",
-        label: "What mattered most today was keeping everything steady.",
+        label: "Keep everything steady",
         nextNodeId: "chapter5_end",
         effects: {
           missionProgress: 1,
         },
         flavor:
-          "You find meaning in steadiness — in the quiet refusal to let things drift into avoidable disorder.",
+          "You do not need heroics. You need things to stay where they should, behave as they should, and not suddenly invent new problems.",
       },
       {
         id: "result-precision-scientist",
-        label: "What mattered most today was protecting the integrity of the data.",
+        label: "Protect the integrity of the data",
         nextNodeId: "chapter5_end",
         effects: {
           missionProgress: 1,
         },
         flavor:
-          "You find meaning in truth — in giving the unknown an answer it can trust.",
+          "A pretty result is optional. An honest result is not.",
       },
       {
         id: "result-team-anchor",
-        label: "What mattered most today was staying aligned with the people behind the mission.",
+        label: "Stay aligned with the people behind the mission",
         nextNodeId: "chapter5_end",
         effects: {
           teamTrust: 2,
         },
         flavor:
-          "You find meaning in connection — in remembering that no mission is ever carried by one person alone.",
+          "No mission this complicated is ever really about one person being brilliant in a corner.",
       },
       {
         id: "result-adaptive-problem-solver",
-        label: "What mattered most today was meeting uncertainty without flinching.",
+        label: "Meet uncertainty without flinching",
         nextNodeId: "chapter5_end",
         effects: {
           stress: -1,
           energy: 1,
         },
         flavor:
-          "You find meaning in judgment — in standing still long enough to see clearly when things become uncertain.",
+          "You do not need the day to behave itself. You just need yourself to.",
       },
     ],
   },
@@ -192,7 +192,7 @@ export const astronautChapter5StoryNodes: Record<string, StoryNode> = {
     sceneTitle: "Day Complete",
     backgroundImage: "/images/astronaut/earth-window.jpg",
     narration:
-      "The day is complete. Outside, Earth goes on turning beneath you with or without witness. Inside, the station continues its endless work of holding, circulating, supporting, enduring. You were part of that today — not as a symbol, but as a person who showed up, paid attention, and carried a small portion of responsibility well. That is enough. More than enough. Your result is ready.",
+      "The day is complete. Outside, Earth continues turning with or without witness. Inside, the station keeps doing what it was built to do: hold, circulate, support, endure. Today, so did you. Not as a symbol. Not as a poster. Just as a person who showed up, paid attention, and carried a small portion of responsibility well. In orbit, that is not small. Your result is ready.",
     choices: [],
   },
 };
