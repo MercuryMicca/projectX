@@ -19,17 +19,34 @@ export type StoryNode = {
   sceneTitle: string;
   backgroundImage: string;
   narration: string;
+  blockType?: "choice" | "narration" | "open";
+  autoAdvanceTo?: string | null;
+  openNextNodeId?: string | null;
+  suggestedPrompts?: string[];
   choices: NodeChoice[];
 };
 
 export const astronautChapter1StoryNodes: Record<string, StoryNode> = {
+  wakeup_intro: {
+    id: "wakeup_intro",
+    chapterId: "chapter1",
+    sceneTitle: "Wake Up",
+    backgroundImage: "/images/astronaut/wakeup.jpg",
+    narration:
+      "A thin layer of fan noise fills the quarters before thought fully returns. For a second, your body reaches for gravity and finds none.",
+    blockType: "narration",
+    autoAdvanceTo: "wakeup",
+    choices: [],
+  },
+
   wakeup: {
     id: "wakeup",
     chapterId: "chapter1",
     sceneTitle: "Wake Up",
     backgroundImage: "/images/astronaut/wakeup.jpg",
     narration:
-      "06:00 GMT. A thin layer of fan noise hangs in the air like white noise that never fully ends. You wake inside your crew quarters, zipped into a sleeping bag fixed to the wall. For half a second, your body reaches for gravity and finds none. Outside the station, sunrise and sunset race past in quick succession, but your day does not begin with light — it begins with the schedule. In orbit, routine is not comfort. It is structure.",
+      "You wake inside your crew quarters, zipped into a sleeping bag fixed to the wall. Outside the station, sunrise and sunset are already racing past, but your day begins with something quieter than spectacle.",
+    blockType: "choice",
     choices: [
       {
         id: "wakeup-work",
@@ -57,7 +74,7 @@ export const astronautChapter1StoryNodes: Record<string, StoryNode> = {
       },
       {
         id: "wakeup-brief",
-        label: "Pull up the day’s task summary before leaving your sleep station",
+        label: "Pull up the day's task summary before leaving your sleep station",
         nextNodeId: "first_choice",
         effects: {
           missionProgress: 5,
@@ -76,6 +93,7 @@ export const astronautChapter1StoryNodes: Record<string, StoryNode> = {
     backgroundImage: "/images/astronaut/wakeup.jpg",
     narration:
       "You ease yourself out of the sleep station and into the narrow corridor beyond. In microgravity, morning is less about standing up than re-establishing your relationship with direction. There is no floor, only habit. A task board is already synced. Somewhere deeper in the station, someone is already working.",
+    blockType: "choice",
     choices: [
       {
         id: "orientation-gear",
@@ -121,43 +139,14 @@ export const astronautChapter1StoryNodes: Record<string, StoryNode> = {
     backgroundImage: "/images/astronaut/wakeup.jpg",
     narration:
       "You pivot toward the next module and your elbow brushes the wall. That is all it takes. Your body glides slowly sideways, more elegant than intended and less controlled than you would like. This is one of the quiet truths of orbit: big mistakes are rare, but tiny ones never stop asking for attention.",
-    choices: [
-      {
-        id: "microgravity-stabilize",
-        label: "Catch a handrail and stabilize yourself before moving on",
-        nextNodeId: "chapter1_end",
-        effects: {
-          stress: -4,
-          missionProgress: 4,
-        },
-        flavor:
-          "You choose control over style.",
-      },
-      {
-        id: "microgravity-glide",
-        label: "Use the drift and redirect yourself into the next module",
-        nextNodeId: "chapter1_end",
-        effects: {
-          missionProgress: 6,
-          energy: -3,
-          stress: 1,
-        },
-        flavor:
-          "You let the station’s physics work with you instead of against you.",
-      },
-      {
-        id: "microgravity-joke",
-        label: "Laugh it off and make a quick joke over comms",
-        nextNodeId: "chapter1_end",
-        effects: {
-          stress: -5,
-          teamTrust: 4,
-          missionProgress: 1,
-        },
-        flavor:
-          "Competence is useful. So is keeping the room human.",
-      },
+    blockType: "open",
+    openNextNodeId: "chapter1_end",
+    suggestedPrompts: [
+      "Catch a handrail and steady yourself",
+      "Use the drift and guide yourself forward",
+      "Pause and get your bearings before moving",
     ],
+    choices: [],
   },
 
   chapter1_end: {
@@ -167,15 +156,12 @@ export const astronautChapter1StoryNodes: Record<string, StoryNode> = {
     backgroundImage: "/images/astronaut/wakeup.jpg",
     narration:
       "The first minutes of the day settle around you. The station no longer feels like something you entered this morning; it feels like a system you are now inside of. Your hands know where to go next. Your breathing has evened out. The romantic part of orbit is still there — somewhere beyond the hull, Earth is turning under you — but the workday has properly begun.",
-    choices: [
-      {
-        id: "chapter1-to-chapter2",
-        label: "Continue to hygiene and breakfast",
-        nextNodeId: "hygiene_start",
-        effects: {},
-        flavor:
-          "The day is still ordinary — which is exactly what makes it real.",
-      },
+    blockType: "open",
+    suggestedPrompts: [
+      "Continue to hygiene and breakfast",
+      "Take one last look outside before moving on",
+      "Center yourself and begin the workday",
     ],
+    choices: [],
   },
 };

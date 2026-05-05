@@ -13,14 +13,56 @@ datasource db {
 }
 
 model ExperienceSession {
-  id              String   @id @default(cuid())
+  id              String    @id @default(cuid())
+  userId          String?
   theme           String
   currentChapter  String
-  missionProgress Int
-  stress          Int
-  teamTrust       Int
-  energy          Int
-  status          String   @default("active")
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  status          String    @default("active")
+  awareness       Int       @default(20)
+  energy          Int       @default(70)
+  stress          Int       @default(30)
+  teamTrust       Int       @default(50)
+  missionProgress Int       @default(0)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  messages        Message[]
+  eventLogs       EventLog[]
+}
+
+model Message {
+  id          String            @id @default(cuid())
+  sessionId   String
+  role        String
+  content     String
+  intent      String?
+  createdAt   DateTime          @default(now())
+  session     ExperienceSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId, createdAt])
+}
+
+model ChapterDefinition {
+  id         String @id @default(cuid())
+  theme      String
+  chapterKey String
+  title      String
+  goal       String
+  summary    String
+  order      Int
+
+  @@unique([theme, chapterKey])
+  @@unique([theme, order])
+  @@index([theme, order])
+}
+
+model EventLog {
+  id        String            @id @default(cuid())
+  sessionId String
+  eventType String
+  payload   Json
+  createdAt DateTime          @default(now())
+  session   ExperienceSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId, createdAt])
+  @@index([eventType, createdAt])
 }

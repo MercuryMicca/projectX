@@ -2,6 +2,41 @@
 
 import { useRouter } from "next/navigation";
 
+const roleOptions = [
+  {
+    icon: "🚀",
+    title: "Live a day as an Astronaut",
+    description:
+      "Begin with one orbital morning shaped by routine, observation, and calm discipline.",
+    active: true,
+  },
+  {
+    icon: "🎭",
+    title: "Step into the life of an Actor",
+    active: false,
+  },
+  {
+    icon: "🏃",
+    title: "Train like a professional Athlete",
+    active: false,
+  },
+  {
+    icon: "🧠",
+    title: "Operate as a Surgeon",
+    active: false,
+  },
+  {
+    icon: "✈️",
+    title: "Fly as a Pilot",
+    active: false,
+  },
+  {
+    icon: "🌊",
+    title: "Dive as a Deep Sea Explorer",
+    active: false,
+  },
+] as const;
+
 export default function HomePage() {
   const router = useRouter();
 
@@ -39,7 +74,7 @@ export default function HomePage() {
       {/* Main content */}
       <div className="relative z-10 flex min-h-screen items-center px-8 md:px-16">
         <div className="mx-auto w-full max-w-5xl">
-          <div className="max-w-2xl">
+          <div className="max-w-4xl">
             <p className="mb-4 text-xs uppercase tracking-[0.35em] text-white/40">
               Immersive Life Experience
             </p>
@@ -60,22 +95,54 @@ export default function HomePage() {
               Step into a life you’ve never lived.
             </p>
 
-            <p className="mt-3 max-w-xl text-sm leading-7 text-white/42 md:text-base">
-              Begin with a day in orbit. Move through routine, systems, science,
-              and the quiet discipline of keeping a fragile world alive.
-            </p>
-
-            <div className="mt-10">
-              <button
-                onClick={handleStart}
-                className="
-                  rounded-full border border-white/12 bg-white px-7 py-3
-                  text-sm font-medium tracking-[0.08em] text-black
-                  transition hover:scale-[1.01] hover:opacity-92
-                "
-              >
-                Enter Orbit
-              </button>
+            <div className="mt-10 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+              {roleOptions.map((role) =>
+                role.active ? (
+                  <button
+                    key={role.title}
+                    onClick={handleStart}
+                    className="group rounded-[26px] border border-white/16 bg-white/10 p-5 text-left shadow-[0_24px_80px_rgba(0,0,0,0.22)] backdrop-blur-md transition hover:-translate-y-0.5 hover:border-white/24 hover:bg-white/14"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <p className="text-2xl">{role.icon}</p>
+                        <p className="mt-4 text-lg font-medium text-white">
+                          {role.title}
+                        </p>
+                      </div>
+                      <span className="rounded-full border border-cyan-200/20 bg-cyan-200/10 px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-cyan-100/88">
+                        Active
+                      </span>
+                    </div>
+                    <p className="mt-4 max-w-sm text-sm leading-7 text-white/62">
+                      {role.description}
+                    </p>
+                    <div className="mt-5 flex items-center gap-3 text-sm text-white/86">
+                      <span>Enter Orbit</span>
+                      <span className="transition group-hover:translate-x-1">
+                        →
+                      </span>
+                    </div>
+                  </button>
+                ) : (
+                  <div
+                    key={role.title}
+                    className="rounded-[26px] border border-white/8 bg-white/[0.045] p-5 opacity-55 backdrop-blur-md"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <p className="text-2xl grayscale">{role.icon}</p>
+                        <p className="mt-4 text-lg font-medium text-white/78">
+                          {role.title}
+                        </p>
+                      </div>
+                      <span className="rounded-full border border-white/10 bg-white/6 px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-white/56">
+                        Coming soon
+                      </span>
+                    </div>
+                  </div>
+                )
+              )}
             </div>
           </div>
         </div>

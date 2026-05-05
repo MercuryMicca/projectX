@@ -27,54 +27,62 @@ export type AggregateExperienceSession = {
 }
 
 export type ExperienceSessionAvgAggregateOutputType = {
-  missionProgress: number | null
+  awareness: number | null
+  energy: number | null
   stress: number | null
   teamTrust: number | null
-  energy: number | null
+  missionProgress: number | null
 }
 
 export type ExperienceSessionSumAggregateOutputType = {
-  missionProgress: number | null
+  awareness: number | null
+  energy: number | null
   stress: number | null
   teamTrust: number | null
-  energy: number | null
+  missionProgress: number | null
 }
 
 export type ExperienceSessionMinAggregateOutputType = {
   id: string | null
+  userId: string | null
   theme: string | null
   currentChapter: string | null
-  missionProgress: number | null
+  status: string | null
+  awareness: number | null
+  energy: number | null
   stress: number | null
   teamTrust: number | null
-  energy: number | null
-  status: string | null
+  missionProgress: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
 
 export type ExperienceSessionMaxAggregateOutputType = {
   id: string | null
+  userId: string | null
   theme: string | null
   currentChapter: string | null
-  missionProgress: number | null
+  status: string | null
+  awareness: number | null
+  energy: number | null
   stress: number | null
   teamTrust: number | null
-  energy: number | null
-  status: string | null
+  missionProgress: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
 
 export type ExperienceSessionCountAggregateOutputType = {
   id: number
+  userId: number
   theme: number
   currentChapter: number
-  missionProgress: number
+  status: number
+  awareness: number
+  energy: number
   stress: number
   teamTrust: number
-  energy: number
-  status: number
+  missionProgress: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -82,54 +90,62 @@ export type ExperienceSessionCountAggregateOutputType = {
 
 
 export type ExperienceSessionAvgAggregateInputType = {
-  missionProgress?: true
+  awareness?: true
+  energy?: true
   stress?: true
   teamTrust?: true
-  energy?: true
+  missionProgress?: true
 }
 
 export type ExperienceSessionSumAggregateInputType = {
-  missionProgress?: true
+  awareness?: true
+  energy?: true
   stress?: true
   teamTrust?: true
-  energy?: true
+  missionProgress?: true
 }
 
 export type ExperienceSessionMinAggregateInputType = {
   id?: true
+  userId?: true
   theme?: true
   currentChapter?: true
-  missionProgress?: true
+  status?: true
+  awareness?: true
+  energy?: true
   stress?: true
   teamTrust?: true
-  energy?: true
-  status?: true
+  missionProgress?: true
   createdAt?: true
   updatedAt?: true
 }
 
 export type ExperienceSessionMaxAggregateInputType = {
   id?: true
+  userId?: true
   theme?: true
   currentChapter?: true
-  missionProgress?: true
+  status?: true
+  awareness?: true
+  energy?: true
   stress?: true
   teamTrust?: true
-  energy?: true
-  status?: true
+  missionProgress?: true
   createdAt?: true
   updatedAt?: true
 }
 
 export type ExperienceSessionCountAggregateInputType = {
   id?: true
+  userId?: true
   theme?: true
   currentChapter?: true
-  missionProgress?: true
+  status?: true
+  awareness?: true
+  energy?: true
   stress?: true
   teamTrust?: true
-  energy?: true
-  status?: true
+  missionProgress?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -223,13 +239,15 @@ export type ExperienceSessionGroupByArgs<ExtArgs extends runtime.Types.Extension
 
 export type ExperienceSessionGroupByOutputType = {
   id: string
+  userId: string | null
   theme: string
   currentChapter: string
-  missionProgress: number
+  status: string
+  awareness: number
+  energy: number
   stress: number
   teamTrust: number
-  energy: number
-  status: string
+  missionProgress: number
   createdAt: Date
   updatedAt: Date
   _count: ExperienceSessionCountAggregateOutputType | null
@@ -259,28 +277,36 @@ export type ExperienceSessionWhereInput = {
   OR?: Prisma.ExperienceSessionWhereInput[]
   NOT?: Prisma.ExperienceSessionWhereInput | Prisma.ExperienceSessionWhereInput[]
   id?: Prisma.StringFilter<"ExperienceSession"> | string
+  userId?: Prisma.StringNullableFilter<"ExperienceSession"> | string | null
   theme?: Prisma.StringFilter<"ExperienceSession"> | string
   currentChapter?: Prisma.StringFilter<"ExperienceSession"> | string
-  missionProgress?: Prisma.IntFilter<"ExperienceSession"> | number
+  status?: Prisma.StringFilter<"ExperienceSession"> | string
+  awareness?: Prisma.IntFilter<"ExperienceSession"> | number
+  energy?: Prisma.IntFilter<"ExperienceSession"> | number
   stress?: Prisma.IntFilter<"ExperienceSession"> | number
   teamTrust?: Prisma.IntFilter<"ExperienceSession"> | number
-  energy?: Prisma.IntFilter<"ExperienceSession"> | number
-  status?: Prisma.StringFilter<"ExperienceSession"> | string
+  missionProgress?: Prisma.IntFilter<"ExperienceSession"> | number
   createdAt?: Prisma.DateTimeFilter<"ExperienceSession"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ExperienceSession"> | Date | string
+  messages?: Prisma.MessageListRelationFilter
+  eventLogs?: Prisma.EventLogListRelationFilter
 }
 
 export type ExperienceSessionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   theme?: Prisma.SortOrder
   currentChapter?: Prisma.SortOrder
-  missionProgress?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  awareness?: Prisma.SortOrder
+  energy?: Prisma.SortOrder
   stress?: Prisma.SortOrder
   teamTrust?: Prisma.SortOrder
-  energy?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  missionProgress?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  messages?: Prisma.MessageOrderByRelationAggregateInput
+  eventLogs?: Prisma.EventLogOrderByRelationAggregateInput
 }
 
 export type ExperienceSessionWhereUniqueInput = Prisma.AtLeast<{
@@ -288,26 +314,32 @@ export type ExperienceSessionWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ExperienceSessionWhereInput | Prisma.ExperienceSessionWhereInput[]
   OR?: Prisma.ExperienceSessionWhereInput[]
   NOT?: Prisma.ExperienceSessionWhereInput | Prisma.ExperienceSessionWhereInput[]
+  userId?: Prisma.StringNullableFilter<"ExperienceSession"> | string | null
   theme?: Prisma.StringFilter<"ExperienceSession"> | string
   currentChapter?: Prisma.StringFilter<"ExperienceSession"> | string
-  missionProgress?: Prisma.IntFilter<"ExperienceSession"> | number
+  status?: Prisma.StringFilter<"ExperienceSession"> | string
+  awareness?: Prisma.IntFilter<"ExperienceSession"> | number
+  energy?: Prisma.IntFilter<"ExperienceSession"> | number
   stress?: Prisma.IntFilter<"ExperienceSession"> | number
   teamTrust?: Prisma.IntFilter<"ExperienceSession"> | number
-  energy?: Prisma.IntFilter<"ExperienceSession"> | number
-  status?: Prisma.StringFilter<"ExperienceSession"> | string
+  missionProgress?: Prisma.IntFilter<"ExperienceSession"> | number
   createdAt?: Prisma.DateTimeFilter<"ExperienceSession"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ExperienceSession"> | Date | string
+  messages?: Prisma.MessageListRelationFilter
+  eventLogs?: Prisma.EventLogListRelationFilter
 }, "id">
 
 export type ExperienceSessionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   theme?: Prisma.SortOrder
   currentChapter?: Prisma.SortOrder
-  missionProgress?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  awareness?: Prisma.SortOrder
+  energy?: Prisma.SortOrder
   stress?: Prisma.SortOrder
   teamTrust?: Prisma.SortOrder
-  energy?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  missionProgress?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ExperienceSessionCountOrderByAggregateInput
@@ -322,163 +354,204 @@ export type ExperienceSessionScalarWhereWithAggregatesInput = {
   OR?: Prisma.ExperienceSessionScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ExperienceSessionScalarWhereWithAggregatesInput | Prisma.ExperienceSessionScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"ExperienceSession"> | string
+  userId?: Prisma.StringNullableWithAggregatesFilter<"ExperienceSession"> | string | null
   theme?: Prisma.StringWithAggregatesFilter<"ExperienceSession"> | string
   currentChapter?: Prisma.StringWithAggregatesFilter<"ExperienceSession"> | string
-  missionProgress?: Prisma.IntWithAggregatesFilter<"ExperienceSession"> | number
+  status?: Prisma.StringWithAggregatesFilter<"ExperienceSession"> | string
+  awareness?: Prisma.IntWithAggregatesFilter<"ExperienceSession"> | number
+  energy?: Prisma.IntWithAggregatesFilter<"ExperienceSession"> | number
   stress?: Prisma.IntWithAggregatesFilter<"ExperienceSession"> | number
   teamTrust?: Prisma.IntWithAggregatesFilter<"ExperienceSession"> | number
-  energy?: Prisma.IntWithAggregatesFilter<"ExperienceSession"> | number
-  status?: Prisma.StringWithAggregatesFilter<"ExperienceSession"> | string
+  missionProgress?: Prisma.IntWithAggregatesFilter<"ExperienceSession"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ExperienceSession"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ExperienceSession"> | Date | string
 }
 
 export type ExperienceSessionCreateInput = {
   id?: string
+  userId?: string | null
   theme: string
   currentChapter: string
-  missionProgress: number
-  stress: number
-  teamTrust: number
-  energy: number
   status?: string
+  awareness?: number
+  energy?: number
+  stress?: number
+  teamTrust?: number
+  missionProgress?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  messages?: Prisma.MessageCreateNestedManyWithoutSessionInput
+  eventLogs?: Prisma.EventLogCreateNestedManyWithoutSessionInput
 }
 
 export type ExperienceSessionUncheckedCreateInput = {
   id?: string
+  userId?: string | null
   theme: string
   currentChapter: string
-  missionProgress: number
-  stress: number
-  teamTrust: number
-  energy: number
   status?: string
+  awareness?: number
+  energy?: number
+  stress?: number
+  teamTrust?: number
+  missionProgress?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSessionInput
+  eventLogs?: Prisma.EventLogUncheckedCreateNestedManyWithoutSessionInput
 }
 
 export type ExperienceSessionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.StringFieldUpdateOperationsInput | string
   currentChapter?: Prisma.StringFieldUpdateOperationsInput | string
-  missionProgress?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  awareness?: Prisma.IntFieldUpdateOperationsInput | number
+  energy?: Prisma.IntFieldUpdateOperationsInput | number
   stress?: Prisma.IntFieldUpdateOperationsInput | number
   teamTrust?: Prisma.IntFieldUpdateOperationsInput | number
-  energy?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  missionProgress?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  messages?: Prisma.MessageUpdateManyWithoutSessionNestedInput
+  eventLogs?: Prisma.EventLogUpdateManyWithoutSessionNestedInput
 }
 
 export type ExperienceSessionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.StringFieldUpdateOperationsInput | string
   currentChapter?: Prisma.StringFieldUpdateOperationsInput | string
-  missionProgress?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  awareness?: Prisma.IntFieldUpdateOperationsInput | number
+  energy?: Prisma.IntFieldUpdateOperationsInput | number
   stress?: Prisma.IntFieldUpdateOperationsInput | number
   teamTrust?: Prisma.IntFieldUpdateOperationsInput | number
-  energy?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  missionProgress?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSessionNestedInput
+  eventLogs?: Prisma.EventLogUncheckedUpdateManyWithoutSessionNestedInput
 }
 
 export type ExperienceSessionCreateManyInput = {
   id?: string
+  userId?: string | null
   theme: string
   currentChapter: string
-  missionProgress: number
-  stress: number
-  teamTrust: number
-  energy: number
   status?: string
+  awareness?: number
+  energy?: number
+  stress?: number
+  teamTrust?: number
+  missionProgress?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type ExperienceSessionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.StringFieldUpdateOperationsInput | string
   currentChapter?: Prisma.StringFieldUpdateOperationsInput | string
-  missionProgress?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  awareness?: Prisma.IntFieldUpdateOperationsInput | number
+  energy?: Prisma.IntFieldUpdateOperationsInput | number
   stress?: Prisma.IntFieldUpdateOperationsInput | number
   teamTrust?: Prisma.IntFieldUpdateOperationsInput | number
-  energy?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  missionProgress?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ExperienceSessionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   theme?: Prisma.StringFieldUpdateOperationsInput | string
   currentChapter?: Prisma.StringFieldUpdateOperationsInput | string
-  missionProgress?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  awareness?: Prisma.IntFieldUpdateOperationsInput | number
+  energy?: Prisma.IntFieldUpdateOperationsInput | number
   stress?: Prisma.IntFieldUpdateOperationsInput | number
   teamTrust?: Prisma.IntFieldUpdateOperationsInput | number
-  energy?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  missionProgress?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ExperienceSessionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   theme?: Prisma.SortOrder
   currentChapter?: Prisma.SortOrder
-  missionProgress?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  awareness?: Prisma.SortOrder
+  energy?: Prisma.SortOrder
   stress?: Prisma.SortOrder
   teamTrust?: Prisma.SortOrder
-  energy?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  missionProgress?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type ExperienceSessionAvgOrderByAggregateInput = {
-  missionProgress?: Prisma.SortOrder
+  awareness?: Prisma.SortOrder
+  energy?: Prisma.SortOrder
   stress?: Prisma.SortOrder
   teamTrust?: Prisma.SortOrder
-  energy?: Prisma.SortOrder
+  missionProgress?: Prisma.SortOrder
 }
 
 export type ExperienceSessionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   theme?: Prisma.SortOrder
   currentChapter?: Prisma.SortOrder
-  missionProgress?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  awareness?: Prisma.SortOrder
+  energy?: Prisma.SortOrder
   stress?: Prisma.SortOrder
   teamTrust?: Prisma.SortOrder
-  energy?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  missionProgress?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type ExperienceSessionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   theme?: Prisma.SortOrder
   currentChapter?: Prisma.SortOrder
-  missionProgress?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  awareness?: Prisma.SortOrder
+  energy?: Prisma.SortOrder
   stress?: Prisma.SortOrder
   teamTrust?: Prisma.SortOrder
-  energy?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  missionProgress?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type ExperienceSessionSumOrderByAggregateInput = {
-  missionProgress?: Prisma.SortOrder
+  awareness?: Prisma.SortOrder
+  energy?: Prisma.SortOrder
   stress?: Prisma.SortOrder
   teamTrust?: Prisma.SortOrder
-  energy?: Prisma.SortOrder
+  missionProgress?: Prisma.SortOrder
+}
+
+export type ExperienceSessionScalarRelationFilter = {
+  is?: Prisma.ExperienceSessionWhereInput
+  isNot?: Prisma.ExperienceSessionWhereInput
 }
 
 export type StringFieldUpdateOperationsInput = {
   set?: string
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -493,74 +566,323 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
+export type ExperienceSessionCreateNestedOneWithoutMessagesInput = {
+  create?: Prisma.XOR<Prisma.ExperienceSessionCreateWithoutMessagesInput, Prisma.ExperienceSessionUncheckedCreateWithoutMessagesInput>
+  connectOrCreate?: Prisma.ExperienceSessionCreateOrConnectWithoutMessagesInput
+  connect?: Prisma.ExperienceSessionWhereUniqueInput
+}
+
+export type ExperienceSessionUpdateOneRequiredWithoutMessagesNestedInput = {
+  create?: Prisma.XOR<Prisma.ExperienceSessionCreateWithoutMessagesInput, Prisma.ExperienceSessionUncheckedCreateWithoutMessagesInput>
+  connectOrCreate?: Prisma.ExperienceSessionCreateOrConnectWithoutMessagesInput
+  upsert?: Prisma.ExperienceSessionUpsertWithoutMessagesInput
+  connect?: Prisma.ExperienceSessionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ExperienceSessionUpdateToOneWithWhereWithoutMessagesInput, Prisma.ExperienceSessionUpdateWithoutMessagesInput>, Prisma.ExperienceSessionUncheckedUpdateWithoutMessagesInput>
+}
+
+export type ExperienceSessionCreateNestedOneWithoutEventLogsInput = {
+  create?: Prisma.XOR<Prisma.ExperienceSessionCreateWithoutEventLogsInput, Prisma.ExperienceSessionUncheckedCreateWithoutEventLogsInput>
+  connectOrCreate?: Prisma.ExperienceSessionCreateOrConnectWithoutEventLogsInput
+  connect?: Prisma.ExperienceSessionWhereUniqueInput
+}
+
+export type ExperienceSessionUpdateOneRequiredWithoutEventLogsNestedInput = {
+  create?: Prisma.XOR<Prisma.ExperienceSessionCreateWithoutEventLogsInput, Prisma.ExperienceSessionUncheckedCreateWithoutEventLogsInput>
+  connectOrCreate?: Prisma.ExperienceSessionCreateOrConnectWithoutEventLogsInput
+  upsert?: Prisma.ExperienceSessionUpsertWithoutEventLogsInput
+  connect?: Prisma.ExperienceSessionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ExperienceSessionUpdateToOneWithWhereWithoutEventLogsInput, Prisma.ExperienceSessionUpdateWithoutEventLogsInput>, Prisma.ExperienceSessionUncheckedUpdateWithoutEventLogsInput>
+}
+
+export type ExperienceSessionCreateWithoutMessagesInput = {
+  id?: string
+  userId?: string | null
+  theme: string
+  currentChapter: string
+  status?: string
+  awareness?: number
+  energy?: number
+  stress?: number
+  teamTrust?: number
+  missionProgress?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  eventLogs?: Prisma.EventLogCreateNestedManyWithoutSessionInput
+}
+
+export type ExperienceSessionUncheckedCreateWithoutMessagesInput = {
+  id?: string
+  userId?: string | null
+  theme: string
+  currentChapter: string
+  status?: string
+  awareness?: number
+  energy?: number
+  stress?: number
+  teamTrust?: number
+  missionProgress?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  eventLogs?: Prisma.EventLogUncheckedCreateNestedManyWithoutSessionInput
+}
+
+export type ExperienceSessionCreateOrConnectWithoutMessagesInput = {
+  where: Prisma.ExperienceSessionWhereUniqueInput
+  create: Prisma.XOR<Prisma.ExperienceSessionCreateWithoutMessagesInput, Prisma.ExperienceSessionUncheckedCreateWithoutMessagesInput>
+}
+
+export type ExperienceSessionUpsertWithoutMessagesInput = {
+  update: Prisma.XOR<Prisma.ExperienceSessionUpdateWithoutMessagesInput, Prisma.ExperienceSessionUncheckedUpdateWithoutMessagesInput>
+  create: Prisma.XOR<Prisma.ExperienceSessionCreateWithoutMessagesInput, Prisma.ExperienceSessionUncheckedCreateWithoutMessagesInput>
+  where?: Prisma.ExperienceSessionWhereInput
+}
+
+export type ExperienceSessionUpdateToOneWithWhereWithoutMessagesInput = {
+  where?: Prisma.ExperienceSessionWhereInput
+  data: Prisma.XOR<Prisma.ExperienceSessionUpdateWithoutMessagesInput, Prisma.ExperienceSessionUncheckedUpdateWithoutMessagesInput>
+}
+
+export type ExperienceSessionUpdateWithoutMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  theme?: Prisma.StringFieldUpdateOperationsInput | string
+  currentChapter?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  awareness?: Prisma.IntFieldUpdateOperationsInput | number
+  energy?: Prisma.IntFieldUpdateOperationsInput | number
+  stress?: Prisma.IntFieldUpdateOperationsInput | number
+  teamTrust?: Prisma.IntFieldUpdateOperationsInput | number
+  missionProgress?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  eventLogs?: Prisma.EventLogUpdateManyWithoutSessionNestedInput
+}
+
+export type ExperienceSessionUncheckedUpdateWithoutMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  theme?: Prisma.StringFieldUpdateOperationsInput | string
+  currentChapter?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  awareness?: Prisma.IntFieldUpdateOperationsInput | number
+  energy?: Prisma.IntFieldUpdateOperationsInput | number
+  stress?: Prisma.IntFieldUpdateOperationsInput | number
+  teamTrust?: Prisma.IntFieldUpdateOperationsInput | number
+  missionProgress?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  eventLogs?: Prisma.EventLogUncheckedUpdateManyWithoutSessionNestedInput
+}
+
+export type ExperienceSessionCreateWithoutEventLogsInput = {
+  id?: string
+  userId?: string | null
+  theme: string
+  currentChapter: string
+  status?: string
+  awareness?: number
+  energy?: number
+  stress?: number
+  teamTrust?: number
+  missionProgress?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  messages?: Prisma.MessageCreateNestedManyWithoutSessionInput
+}
+
+export type ExperienceSessionUncheckedCreateWithoutEventLogsInput = {
+  id?: string
+  userId?: string | null
+  theme: string
+  currentChapter: string
+  status?: string
+  awareness?: number
+  energy?: number
+  stress?: number
+  teamTrust?: number
+  missionProgress?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSessionInput
+}
+
+export type ExperienceSessionCreateOrConnectWithoutEventLogsInput = {
+  where: Prisma.ExperienceSessionWhereUniqueInput
+  create: Prisma.XOR<Prisma.ExperienceSessionCreateWithoutEventLogsInput, Prisma.ExperienceSessionUncheckedCreateWithoutEventLogsInput>
+}
+
+export type ExperienceSessionUpsertWithoutEventLogsInput = {
+  update: Prisma.XOR<Prisma.ExperienceSessionUpdateWithoutEventLogsInput, Prisma.ExperienceSessionUncheckedUpdateWithoutEventLogsInput>
+  create: Prisma.XOR<Prisma.ExperienceSessionCreateWithoutEventLogsInput, Prisma.ExperienceSessionUncheckedCreateWithoutEventLogsInput>
+  where?: Prisma.ExperienceSessionWhereInput
+}
+
+export type ExperienceSessionUpdateToOneWithWhereWithoutEventLogsInput = {
+  where?: Prisma.ExperienceSessionWhereInput
+  data: Prisma.XOR<Prisma.ExperienceSessionUpdateWithoutEventLogsInput, Prisma.ExperienceSessionUncheckedUpdateWithoutEventLogsInput>
+}
+
+export type ExperienceSessionUpdateWithoutEventLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  theme?: Prisma.StringFieldUpdateOperationsInput | string
+  currentChapter?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  awareness?: Prisma.IntFieldUpdateOperationsInput | number
+  energy?: Prisma.IntFieldUpdateOperationsInput | number
+  stress?: Prisma.IntFieldUpdateOperationsInput | number
+  teamTrust?: Prisma.IntFieldUpdateOperationsInput | number
+  missionProgress?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  messages?: Prisma.MessageUpdateManyWithoutSessionNestedInput
+}
+
+export type ExperienceSessionUncheckedUpdateWithoutEventLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  theme?: Prisma.StringFieldUpdateOperationsInput | string
+  currentChapter?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  awareness?: Prisma.IntFieldUpdateOperationsInput | number
+  energy?: Prisma.IntFieldUpdateOperationsInput | number
+  stress?: Prisma.IntFieldUpdateOperationsInput | number
+  teamTrust?: Prisma.IntFieldUpdateOperationsInput | number
+  missionProgress?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSessionNestedInput
+}
+
+
+/**
+ * Count Type ExperienceSessionCountOutputType
+ */
+
+export type ExperienceSessionCountOutputType = {
+  messages: number
+  eventLogs: number
+}
+
+export type ExperienceSessionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  messages?: boolean | ExperienceSessionCountOutputTypeCountMessagesArgs
+  eventLogs?: boolean | ExperienceSessionCountOutputTypeCountEventLogsArgs
+}
+
+/**
+ * ExperienceSessionCountOutputType without action
+ */
+export type ExperienceSessionCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ExperienceSessionCountOutputType
+   */
+  select?: Prisma.ExperienceSessionCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ExperienceSessionCountOutputType without action
+ */
+export type ExperienceSessionCountOutputTypeCountMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MessageWhereInput
+}
+
+/**
+ * ExperienceSessionCountOutputType without action
+ */
+export type ExperienceSessionCountOutputTypeCountEventLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EventLogWhereInput
+}
 
 
 export type ExperienceSessionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  userId?: boolean
   theme?: boolean
   currentChapter?: boolean
-  missionProgress?: boolean
+  status?: boolean
+  awareness?: boolean
+  energy?: boolean
   stress?: boolean
   teamTrust?: boolean
-  energy?: boolean
-  status?: boolean
+  missionProgress?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  messages?: boolean | Prisma.ExperienceSession$messagesArgs<ExtArgs>
+  eventLogs?: boolean | Prisma.ExperienceSession$eventLogsArgs<ExtArgs>
+  _count?: boolean | Prisma.ExperienceSessionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["experienceSession"]>
 
 export type ExperienceSessionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  userId?: boolean
   theme?: boolean
   currentChapter?: boolean
-  missionProgress?: boolean
+  status?: boolean
+  awareness?: boolean
+  energy?: boolean
   stress?: boolean
   teamTrust?: boolean
-  energy?: boolean
-  status?: boolean
+  missionProgress?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["experienceSession"]>
 
 export type ExperienceSessionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  userId?: boolean
   theme?: boolean
   currentChapter?: boolean
-  missionProgress?: boolean
+  status?: boolean
+  awareness?: boolean
+  energy?: boolean
   stress?: boolean
   teamTrust?: boolean
-  energy?: boolean
-  status?: boolean
+  missionProgress?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["experienceSession"]>
 
 export type ExperienceSessionSelectScalar = {
   id?: boolean
+  userId?: boolean
   theme?: boolean
   currentChapter?: boolean
-  missionProgress?: boolean
+  status?: boolean
+  awareness?: boolean
+  energy?: boolean
   stress?: boolean
   teamTrust?: boolean
-  energy?: boolean
-  status?: boolean
+  missionProgress?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ExperienceSessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "theme" | "currentChapter" | "missionProgress" | "stress" | "teamTrust" | "energy" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["experienceSession"]>
+export type ExperienceSessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "theme" | "currentChapter" | "status" | "awareness" | "energy" | "stress" | "teamTrust" | "missionProgress" | "createdAt" | "updatedAt", ExtArgs["result"]["experienceSession"]>
+export type ExperienceSessionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  messages?: boolean | Prisma.ExperienceSession$messagesArgs<ExtArgs>
+  eventLogs?: boolean | Prisma.ExperienceSession$eventLogsArgs<ExtArgs>
+  _count?: boolean | Prisma.ExperienceSessionCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type ExperienceSessionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type ExperienceSessionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $ExperienceSessionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ExperienceSession"
-  objects: {}
+  objects: {
+    messages: Prisma.$MessagePayload<ExtArgs>[]
+    eventLogs: Prisma.$EventLogPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    userId: string | null
     theme: string
     currentChapter: string
-    missionProgress: number
+    status: string
+    awareness: number
+    energy: number
     stress: number
     teamTrust: number
-    energy: number
-    status: string
+    missionProgress: number
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["experienceSession"]>
@@ -957,6 +1279,8 @@ readonly fields: ExperienceSessionFieldRefs;
  */
 export interface Prisma__ExperienceSessionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  messages<T extends Prisma.ExperienceSession$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ExperienceSession$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  eventLogs<T extends Prisma.ExperienceSession$eventLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ExperienceSession$eventLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -987,13 +1311,15 @@ export interface Prisma__ExperienceSessionClient<T, Null = never, ExtArgs extend
  */
 export interface ExperienceSessionFieldRefs {
   readonly id: Prisma.FieldRef<"ExperienceSession", 'String'>
+  readonly userId: Prisma.FieldRef<"ExperienceSession", 'String'>
   readonly theme: Prisma.FieldRef<"ExperienceSession", 'String'>
   readonly currentChapter: Prisma.FieldRef<"ExperienceSession", 'String'>
-  readonly missionProgress: Prisma.FieldRef<"ExperienceSession", 'Int'>
+  readonly status: Prisma.FieldRef<"ExperienceSession", 'String'>
+  readonly awareness: Prisma.FieldRef<"ExperienceSession", 'Int'>
+  readonly energy: Prisma.FieldRef<"ExperienceSession", 'Int'>
   readonly stress: Prisma.FieldRef<"ExperienceSession", 'Int'>
   readonly teamTrust: Prisma.FieldRef<"ExperienceSession", 'Int'>
-  readonly energy: Prisma.FieldRef<"ExperienceSession", 'Int'>
-  readonly status: Prisma.FieldRef<"ExperienceSession", 'String'>
+  readonly missionProgress: Prisma.FieldRef<"ExperienceSession", 'Int'>
   readonly createdAt: Prisma.FieldRef<"ExperienceSession", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ExperienceSession", 'DateTime'>
 }
@@ -1013,6 +1339,10 @@ export type ExperienceSessionFindUniqueArgs<ExtArgs extends runtime.Types.Extens
    */
   omit?: Prisma.ExperienceSessionOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExperienceSessionInclude<ExtArgs> | null
+  /**
    * Filter, which ExperienceSession to fetch.
    */
   where: Prisma.ExperienceSessionWhereUniqueInput
@@ -1031,6 +1361,10 @@ export type ExperienceSessionFindUniqueOrThrowArgs<ExtArgs extends runtime.Types
    */
   omit?: Prisma.ExperienceSessionOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExperienceSessionInclude<ExtArgs> | null
+  /**
    * Filter, which ExperienceSession to fetch.
    */
   where: Prisma.ExperienceSessionWhereUniqueInput
@@ -1048,6 +1382,10 @@ export type ExperienceSessionFindFirstArgs<ExtArgs extends runtime.Types.Extensi
    * Omit specific fields from the ExperienceSession
    */
   omit?: Prisma.ExperienceSessionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExperienceSessionInclude<ExtArgs> | null
   /**
    * Filter, which ExperienceSession to fetch.
    */
@@ -1097,6 +1435,10 @@ export type ExperienceSessionFindFirstOrThrowArgs<ExtArgs extends runtime.Types.
    */
   omit?: Prisma.ExperienceSessionOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExperienceSessionInclude<ExtArgs> | null
+  /**
    * Filter, which ExperienceSession to fetch.
    */
   where?: Prisma.ExperienceSessionWhereInput
@@ -1144,6 +1486,10 @@ export type ExperienceSessionFindManyArgs<ExtArgs extends runtime.Types.Extensio
    * Omit specific fields from the ExperienceSession
    */
   omit?: Prisma.ExperienceSessionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExperienceSessionInclude<ExtArgs> | null
   /**
    * Filter, which ExperienceSessions to fetch.
    */
@@ -1193,6 +1539,10 @@ export type ExperienceSessionCreateArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.ExperienceSessionOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExperienceSessionInclude<ExtArgs> | null
+  /**
    * The data needed to create a ExperienceSession.
    */
   data: Prisma.XOR<Prisma.ExperienceSessionCreateInput, Prisma.ExperienceSessionUncheckedCreateInput>
@@ -1240,6 +1590,10 @@ export type ExperienceSessionUpdateArgs<ExtArgs extends runtime.Types.Extensions
    * Omit specific fields from the ExperienceSession
    */
   omit?: Prisma.ExperienceSessionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExperienceSessionInclude<ExtArgs> | null
   /**
    * The data needed to update a ExperienceSession.
    */
@@ -1307,6 +1661,10 @@ export type ExperienceSessionUpsertArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.ExperienceSessionOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExperienceSessionInclude<ExtArgs> | null
+  /**
    * The filter to search for the ExperienceSession to update in case it exists.
    */
   where: Prisma.ExperienceSessionWhereUniqueInput
@@ -1333,6 +1691,10 @@ export type ExperienceSessionDeleteArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.ExperienceSessionOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExperienceSessionInclude<ExtArgs> | null
+  /**
    * Filter which ExperienceSession to delete.
    */
   where: Prisma.ExperienceSessionWhereUniqueInput
@@ -1353,6 +1715,54 @@ export type ExperienceSessionDeleteManyArgs<ExtArgs extends runtime.Types.Extens
 }
 
 /**
+ * ExperienceSession.messages
+ */
+export type ExperienceSession$messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Message
+   */
+  select?: Prisma.MessageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Message
+   */
+  omit?: Prisma.MessageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MessageInclude<ExtArgs> | null
+  where?: Prisma.MessageWhereInput
+  orderBy?: Prisma.MessageOrderByWithRelationInput | Prisma.MessageOrderByWithRelationInput[]
+  cursor?: Prisma.MessageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MessageScalarFieldEnum | Prisma.MessageScalarFieldEnum[]
+}
+
+/**
+ * ExperienceSession.eventLogs
+ */
+export type ExperienceSession$eventLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EventLog
+   */
+  select?: Prisma.EventLogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EventLog
+   */
+  omit?: Prisma.EventLogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EventLogInclude<ExtArgs> | null
+  where?: Prisma.EventLogWhereInput
+  orderBy?: Prisma.EventLogOrderByWithRelationInput | Prisma.EventLogOrderByWithRelationInput[]
+  cursor?: Prisma.EventLogWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EventLogScalarFieldEnum | Prisma.EventLogScalarFieldEnum[]
+}
+
+/**
  * ExperienceSession without action
  */
 export type ExperienceSessionDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1364,4 +1774,8 @@ export type ExperienceSessionDefaultArgs<ExtArgs extends runtime.Types.Extension
    * Omit specific fields from the ExperienceSession
    */
   omit?: Prisma.ExperienceSessionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExperienceSessionInclude<ExtArgs> | null
 }

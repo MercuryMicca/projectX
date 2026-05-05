@@ -1,0 +1,2 @@
+ALTER TABLE "ExperienceSession"
+ADD COLUMN "awareness" INTEGER NOT NULL DEFAULT 20;

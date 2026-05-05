@@ -22,3 +22,18 @@ export * from './enums';
  * 
  */
 export type ExperienceSession = Prisma.ExperienceSessionModel
+/**
+ * Model Message
+ * 
+ */
+export type Message = Prisma.MessageModel
+/**
+ * Model ChapterDefinition
+ * 
+ */
+export type ChapterDefinition = Prisma.ChapterDefinitionModel
+/**
+ * Model EventLog
+ * 
+ */
+export type EventLog = Prisma.EventLogModel

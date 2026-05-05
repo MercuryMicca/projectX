@@ -51,7 +51,10 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  ExperienceSession: 'ExperienceSession'
+  ExperienceSession: 'ExperienceSession',
+  Message: 'Message',
+  ChapterDefinition: 'ChapterDefinition',
+  EventLog: 'EventLog'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -72,18 +75,56 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const ExperienceSessionScalarFieldEnum = {
   id: 'id',
+  userId: 'userId',
   theme: 'theme',
   currentChapter: 'currentChapter',
-  missionProgress: 'missionProgress',
+  status: 'status',
+  awareness: 'awareness',
+  energy: 'energy',
   stress: 'stress',
   teamTrust: 'teamTrust',
-  energy: 'energy',
-  status: 'status',
+  missionProgress: 'missionProgress',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type ExperienceSessionScalarFieldEnum = (typeof ExperienceSessionScalarFieldEnum)[keyof typeof ExperienceSessionScalarFieldEnum]
+
+
+export const MessageScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  role: 'role',
+  content: 'content',
+  intent: 'intent',
+  createdAt: 'createdAt'
+} as const
+
+export type MessageScalarFieldEnum = (typeof MessageScalarFieldEnum)[keyof typeof MessageScalarFieldEnum]
+
+
+export const ChapterDefinitionScalarFieldEnum = {
+  id: 'id',
+  theme: 'theme',
+  chapterKey: 'chapterKey',
+  title: 'title',
+  goal: 'goal',
+  summary: 'summary',
+  order: 'order'
+} as const
+
+export type ChapterDefinitionScalarFieldEnum = (typeof ChapterDefinitionScalarFieldEnum)[keyof typeof ChapterDefinitionScalarFieldEnum]
+
+
+export const EventLogScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  eventType: 'eventType',
+  payload: 'payload',
+  createdAt: 'createdAt'
+} as const
+
+export type EventLogScalarFieldEnum = (typeof EventLogScalarFieldEnum)[keyof typeof EventLogScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -94,10 +135,34 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

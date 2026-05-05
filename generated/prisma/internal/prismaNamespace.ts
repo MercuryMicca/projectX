@@ -384,7 +384,10 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  ExperienceSession: 'ExperienceSession'
+  ExperienceSession: 'ExperienceSession',
+  Message: 'Message',
+  ChapterDefinition: 'ChapterDefinition',
+  EventLog: 'EventLog'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -400,7 +403,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "experienceSession"
+    modelProps: "experienceSession" | "message" | "chapterDefinition" | "eventLog"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -478,6 +481,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Message: {
+      payload: Prisma.$MessagePayload<ExtArgs>
+      fields: Prisma.MessageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MessageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MessageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessagePayload>
+        }
+        findFirst: {
+          args: Prisma.MessageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MessageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessagePayload>
+        }
+        findMany: {
+          args: Prisma.MessageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessagePayload>[]
+        }
+        create: {
+          args: Prisma.MessageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessagePayload>
+        }
+        createMany: {
+          args: Prisma.MessageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MessageCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessagePayload>[]
+        }
+        delete: {
+          args: Prisma.MessageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessagePayload>
+        }
+        update: {
+          args: Prisma.MessageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessagePayload>
+        }
+        deleteMany: {
+          args: Prisma.MessageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MessageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MessageUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessagePayload>[]
+        }
+        upsert: {
+          args: Prisma.MessageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessagePayload>
+        }
+        aggregate: {
+          args: Prisma.MessageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMessage>
+        }
+        groupBy: {
+          args: Prisma.MessageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MessageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MessageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MessageCountAggregateOutputType> | number
+        }
+      }
+    }
+    ChapterDefinition: {
+      payload: Prisma.$ChapterDefinitionPayload<ExtArgs>
+      fields: Prisma.ChapterDefinitionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ChapterDefinitionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterDefinitionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ChapterDefinitionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterDefinitionPayload>
+        }
+        findFirst: {
+          args: Prisma.ChapterDefinitionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterDefinitionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ChapterDefinitionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterDefinitionPayload>
+        }
+        findMany: {
+          args: Prisma.ChapterDefinitionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterDefinitionPayload>[]
+        }
+        create: {
+          args: Prisma.ChapterDefinitionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterDefinitionPayload>
+        }
+        createMany: {
+          args: Prisma.ChapterDefinitionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ChapterDefinitionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterDefinitionPayload>[]
+        }
+        delete: {
+          args: Prisma.ChapterDefinitionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterDefinitionPayload>
+        }
+        update: {
+          args: Prisma.ChapterDefinitionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterDefinitionPayload>
+        }
+        deleteMany: {
+          args: Prisma.ChapterDefinitionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ChapterDefinitionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ChapterDefinitionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterDefinitionPayload>[]
+        }
+        upsert: {
+          args: Prisma.ChapterDefinitionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterDefinitionPayload>
+        }
+        aggregate: {
+          args: Prisma.ChapterDefinitionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateChapterDefinition>
+        }
+        groupBy: {
+          args: Prisma.ChapterDefinitionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChapterDefinitionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ChapterDefinitionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChapterDefinitionCountAggregateOutputType> | number
+        }
+      }
+    }
+    EventLog: {
+      payload: Prisma.$EventLogPayload<ExtArgs>
+      fields: Prisma.EventLogFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EventLogFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventLogPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EventLogFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventLogPayload>
+        }
+        findFirst: {
+          args: Prisma.EventLogFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventLogPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EventLogFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventLogPayload>
+        }
+        findMany: {
+          args: Prisma.EventLogFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventLogPayload>[]
+        }
+        create: {
+          args: Prisma.EventLogCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventLogPayload>
+        }
+        createMany: {
+          args: Prisma.EventLogCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EventLogCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventLogPayload>[]
+        }
+        delete: {
+          args: Prisma.EventLogDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventLogPayload>
+        }
+        update: {
+          args: Prisma.EventLogUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventLogPayload>
+        }
+        deleteMany: {
+          args: Prisma.EventLogDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EventLogUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EventLogUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventLogPayload>[]
+        }
+        upsert: {
+          args: Prisma.EventLogUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventLogPayload>
+        }
+        aggregate: {
+          args: Prisma.EventLogAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEventLog>
+        }
+        groupBy: {
+          args: Prisma.EventLogGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EventLogGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EventLogCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EventLogCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -519,18 +744,56 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const ExperienceSessionScalarFieldEnum = {
   id: 'id',
+  userId: 'userId',
   theme: 'theme',
   currentChapter: 'currentChapter',
-  missionProgress: 'missionProgress',
+  status: 'status',
+  awareness: 'awareness',
+  energy: 'energy',
   stress: 'stress',
   teamTrust: 'teamTrust',
-  energy: 'energy',
-  status: 'status',
+  missionProgress: 'missionProgress',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type ExperienceSessionScalarFieldEnum = (typeof ExperienceSessionScalarFieldEnum)[keyof typeof ExperienceSessionScalarFieldEnum]
+
+
+export const MessageScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  role: 'role',
+  content: 'content',
+  intent: 'intent',
+  createdAt: 'createdAt'
+} as const
+
+export type MessageScalarFieldEnum = (typeof MessageScalarFieldEnum)[keyof typeof MessageScalarFieldEnum]
+
+
+export const ChapterDefinitionScalarFieldEnum = {
+  id: 'id',
+  theme: 'theme',
+  chapterKey: 'chapterKey',
+  title: 'title',
+  goal: 'goal',
+  summary: 'summary',
+  order: 'order'
+} as const
+
+export type ChapterDefinitionScalarFieldEnum = (typeof ChapterDefinitionScalarFieldEnum)[keyof typeof ChapterDefinitionScalarFieldEnum]
+
+
+export const EventLogScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  eventType: 'eventType',
+  payload: 'payload',
+  createdAt: 'createdAt'
+} as const
+
+export type EventLogScalarFieldEnum = (typeof EventLogScalarFieldEnum)[keyof typeof EventLogScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -541,12 +804,36 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 
@@ -594,6 +881,20 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -706,6 +1007,9 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   experienceSession?: Prisma.ExperienceSessionOmit
+  message?: Prisma.MessageOmit
+  chapterDefinition?: Prisma.ChapterDefinitionOmit
+  eventLog?: Prisma.EventLogOmit
 }
 
 /* Types for Logging */

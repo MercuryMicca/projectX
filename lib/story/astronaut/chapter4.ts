@@ -1,6 +1,18 @@
 import type { StoryNode } from "./chapter1";
 
 export const astronautChapter4StoryNodes: Record<string, StoryNode> = {
+  systems_intro: {
+    id: "systems_intro",
+    chapterId: "chapter4",
+    sceneTitle: "Systems Check",
+    backgroundImage: "/images/astronaut/systems-check.jpg",
+    narration:
+      "The station changes character again. This part of orbit is less poetic and more procedural.",
+    blockType: "narration",
+    autoAdvanceTo: "systems_start",
+    choices: [],
+  },
+
   systems_start: {
     id: "systems_start",
     chapterId: "chapter4",
@@ -8,41 +20,14 @@ export const astronautChapter4StoryNodes: Record<string, StoryNode> = {
     backgroundImage: "/images/astronaut/systems-check.jpg",
     narration:
       "You drift into the equipment section and the station changes character again. This part of orbit is less poetic and more procedural: panels, cables, air movement, status lights, machine hum. Life support, environmental controls, circulation, interfaces — none of it is dramatic when it works, which is exactly why it has to be taken seriously. A space station does not stay alive by accident.",
-    choices: [
-      {
-        id: "systems-checklist",
-        label: "Work strictly through the checklist, one item at a time",
-        nextNodeId: "loose_fastener",
-        effects: {
-          teamTrust: 4,
-          missionProgress: 3,
-        },
-        flavor:
-          "You trust process not because it is rigid, but because it keeps people alive.",
-      },
-      {
-        id: "systems-critical-first",
-        label: "Check the most failure-prone critical items first",
-        nextNodeId: "loose_fastener",
-        effects: {
-          missionProgress: 5,
-          stress: 1,
-        },
-        flavor:
-          "You prioritize exposure and risk before completeness.",
-      },
-      {
-        id: "systems-voice-log",
-        label: "Inspect while speaking your observations into the log",
-        nextNodeId: "loose_fastener",
-        effects: {
-          missionProgress: 3,
-          teamTrust: 2,
-        },
-        flavor:
-          "You treat clarity as part of execution.",
-      },
+    blockType: "open",
+    openNextNodeId: "loose_fastener",
+    suggestedPrompts: [
+      "Work through the checklist carefully",
+      "Check the critical systems first",
+      "Speak observations into the log as you go",
     ],
+    choices: [],
   },
 
   loose_fastener: {
@@ -52,6 +37,7 @@ export const astronautChapter4StoryNodes: Record<string, StoryNode> = {
     backgroundImage: "/images/astronaut/systems-check.jpg",
     narration:
       "One fastening point catches your eye. It is not broken. It is simply not sitting where you want it to sit. On Earth, you might call it minor and move on. Up here, minor things deserve more respect. The most dangerous quality in a small problem is how easily it resembles something you can postpone.",
+    blockType: "choice",
     choices: [
       {
         id: "fastener-fix-now",
@@ -97,41 +83,14 @@ export const astronautChapter4StoryNodes: Record<string, StoryNode> = {
     backgroundImage: "/images/astronaut/systems-check.jpg",
     narration:
       "The next task is brief but exacting: a manual confirmation step that does not take long, but punishes impatience. Your hands move slower than your instincts want them to. You can feel the difference between being fast and being precise, and you know only one of those is useful here.",
-    choices: [
-      {
-        id: "manual-steady",
-        label: "Go slowly and optimize for stability",
-        nextNodeId: "reading_anomaly",
-        effects: {
-          teamTrust: 3,
-          stress: -2,
-        },
-        flavor:
-          "You are not trying to impress the timeline. You are trying to respect the machine.",
-      },
-      {
-        id: "manual-fast",
-        label: "Push the pace and recover time where you can",
-        nextNodeId: "reading_anomaly",
-        effects: {
-          missionProgress: 4,
-          stress: 2,
-        },
-        flavor:
-          "You are betting that competence can outrun pressure.",
-      },
-      {
-        id: "manual-crosscheck",
-        label: "Complete the test while cross-checking previous readings",
-        nextNodeId: "reading_anomaly",
-        effects: {
-          missionProgress: 5,
-          energy: -2,
-        },
-        flavor:
-          "You are stacking accuracy onto accuracy, even if it costs you.",
-      },
+    blockType: "open",
+    openNextNodeId: "reading_anomaly",
+    suggestedPrompts: [
+      "Go slowly and optimize for stability",
+      "Push the pace and recover time",
+      "Cross-check as you complete the test",
     ],
+    choices: [],
   },
 
   reading_anomaly: {
@@ -141,6 +100,7 @@ export const astronautChapter4StoryNodes: Record<string, StoryNode> = {
     backgroundImage: "/images/astronaut/systems-check.jpg",
     narration:
       "A value sits just outside the range you expected. Not by much. Not enough to call it a failure. Enough to ask a question. This is the kind of moment that defines technical work in orbit: not obvious danger, but ambiguous deviation. The station is asking whether you can tell the difference between noise and signal.",
+    blockType: "choice",
     choices: [
       {
         id: "anomaly-retest",
@@ -178,22 +138,19 @@ export const astronautChapter4StoryNodes: Record<string, StoryNode> = {
     ],
   },
 
-  chapter4_end: {
+    chapter4_end: {
     id: "chapter4_end",
     chapterId: "chapter4",
     sceneTitle: "Inspection Complete",
     backgroundImage: "/images/astronaut/systems-check.jpg",
     narration:
-      "The inspection block closes without spectacle, which is its own kind of success. Nothing dramatic needed to happen for your work to matter. The station is still breathing, still circulating, still holding together around the crew because a hundred quiet checks were taken seriously. Ahead lies the next shift in the day: science. Less maintenance, more interpretation. Different tools, same responsibility.",
-    choices: [
-      {
-        id: "chapter4-to-chapter5",
-        label: "Continue to science mission",
-        nextNodeId: "science_start",
-        effects: {},
-        flavor:
-          "You leave the machine stable behind you and move toward the questions it exists to help answer.",
-      },
+        "The inspection block closes without spectacle, which is its own kind of success. Nothing dramatic needed to happen for your work to matter. The station is still breathing, still circulating, still holding together around the crew because a hundred quiet checks were taken seriously. Ahead lies the next shift in the day: science. Less maintenance, more interpretation. Different tools, same responsibility.",
+    blockType: "open",
+    suggestedPrompts: [
+        "Continue to science mission",
+        "Pause and log the last findings",
+        "Reset your focus for the next block",
     ],
-  },
+    choices: [],
+    },
 };

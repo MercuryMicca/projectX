@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
 const fadeUp = {
@@ -27,30 +27,52 @@ const staggerContainer = {
 };
 
 export default function IntroPage() {
+  const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
   const [isEntering, setIsEntering] = useState(false);
+  const [playerName, setPlayerName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const handleStartClick = () => {
+    setErrorMessage("");
+    setIsOnboardingOpen(true);
+  };
 
   const handleEnter = async () => {
     if (isEntering) return;
+    if (!playerName.trim()) return;
 
     setIsEntering(true);
     setErrorMessage("");
 
     try {
-      const res = await fetch("/api/session", {
+      const res = await fetch("/api/experience/start", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          theme: "astronaut_day_v1",
+          participantName: playerName.trim(),
+        }),
       });
 
       const rawText = await res.text();
 
-      let data: any;
+      let data:
+        | {
+            sessionId?: string;
+            currentChapter?: string;
+            openingMessage?: string;
+            error?: string;
+          }
+        | undefined;
       try {
         data = JSON.parse(rawText);
       } catch {
         throw new Error("API did not return valid JSON");
       }
 
-      if (!res.ok || !data?.success || !data?.sessionId) {
+      if (!res.ok || !data?.sessionId) {
         throw new Error(data?.error || "Failed to create session");
       }
 
@@ -170,31 +192,10 @@ export default function IntroPage() {
             variants={fadeUp}
             className="mt-5 max-w-xl text-lg leading-8 text-white/82 md:text-xl"
           >
-            Not just to learn how astronauts live — but to step into a world
-            where even the smallest routine changes when gravity disappears.
+            When gravity disappears,
+            <br />
+            even the smallest things change.
           </motion.p>
-
-          <motion.div
-            variants={fadeUp}
-            className="mt-8 max-w-xl space-y-4 text-sm leading-7 text-white/66 md:text-[15px]"
-          >
-            <p>
-              On Earth, every action ends where you leave it. In orbit, nothing does.
-            </p>
-            <p>
-              This experience follows one orbital morning through tiny choices,
-              changing constraints, and the quiet logic of life aboard a space station.
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={fadeUp}
-            className="mt-10 grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-3"
-          >
-            <InfoCard label="Format" value="Immersive AI simulation" />
-            <InfoCard label="Duration" value="One orbital morning" />
-            <InfoCard label="Focus" value="Routine, adaptation, perspective" />
-          </motion.div>
 
           <motion.div
             variants={fadeUp}
@@ -202,16 +203,12 @@ export default function IntroPage() {
           >
             <button
               type="button"
-              onClick={handleEnter}
+              onClick={handleStartClick}
               disabled={isEntering}
               className="inline-flex min-w-[180px] items-center justify-center rounded-full border border-white/20 bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-white/90 disabled:cursor-not-allowed disabled:opacity-80"
             >
-              {isEntering ? "Entering..." : "Enter Simulation"}
+              Enter Orbit
             </button>
-
-            <p className="text-sm text-white/50">
-              Step into another life, one decision at a time.
-            </p>
           </motion.div>
 
           {errorMessage && (
@@ -220,24 +217,111 @@ export default function IntroPage() {
         </motion.div>
       </section>
 
+      <AnimatePresence>
+        {isOnboardingOpen ? (
+          <motion.div
+            className="absolute inset-0 z-20 flex items-center justify-center bg-black/64 px-6 backdrop-blur-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="w-full max-w-xl rounded-[32px] border border-white/10 bg-white/[0.04] p-6 shadow-[0_32px_120px_rgba(0,0,0,0.42)] backdrop-blur-xl md:p-8"
+              initial={{ opacity: 0, y: 20, scale: 0.98, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, y: 16, scale: 0.98, filter: "blur(8px)" }}
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="mb-8 space-y-4">
+                <motion.p
+                  className="text-[11px] uppercase tracking-[0.34em] text-white/44"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.08, duration: 0.45 }}
+                >
+                  Onboarding
+                </motion.p>
+
+                <motion.div
+                  className="space-y-3 text-white"
+                  variants={staggerContainer}
+                  initial="hidden"
+                  animate="show"
+                >
+                  <motion.h2
+                    variants={fadeUp}
+                    className="text-3xl font-semibold tracking-tight md:text-4xl"
+                  >
+                    You are stepping into a life.
+                  </motion.h2>
+
+                  <motion.p
+                    variants={fadeUp}
+                    className="text-lg leading-8 text-white/70 md:text-xl"
+                  >
+                    Not to win.
+                    <br />
+                    But to understand.
+                  </motion.p>
+                </motion.div>
+              </div>
+
+              <motion.form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  void handleEnter();
+                }}
+                className="space-y-5"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.16, duration: 0.45 }}
+              >
+                <label className="block space-y-2">
+                  <span className="text-xs uppercase tracking-[0.22em] text-white/46">
+                    Your Name
+                  </span>
+                  <input
+                    value={playerName}
+                    onChange={(event) => setPlayerName(event.target.value)}
+                    placeholder="Enter your name"
+                    autoFocus
+                    maxLength={40}
+                    className="w-full rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4 text-lg text-white outline-none transition placeholder:text-white/28 focus:border-cyan-200/45 focus:bg-white/[0.08]"
+                  />
+                </label>
+
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (isEntering) return;
+                      setIsOnboardingOpen(false);
+                      setErrorMessage("");
+                    }}
+                    className="text-sm text-white/44 transition hover:text-white/72"
+                  >
+                    Back
+                  </button>
+
+                  <button
+                    type="submit"
+                    disabled={isEntering || !playerName.trim()}
+                    className="inline-flex min-w-[168px] items-center justify-center rounded-full border border-white/14 bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-white/90 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {isEntering ? "Entering..." : "→ Continue"}
+                  </button>
+                </div>
+
+                {errorMessage ? (
+                  <p className="text-sm text-red-300/85">{errorMessage}</p>
+                ) : null}
+              </motion.form>
+            </motion.div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
     </main>
-  );
-}
-
-function InfoCard({
-  label,
-  value,
-}: {
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="rounded-2xl border border-white/12 bg-white/6 p-4 backdrop-blur-md">
-      <p className="text-[10px] uppercase tracking-[0.22em] text-white/45">
-        {label}
-      </p>
-      <p className="mt-2 text-sm leading-6 text-white/90">{value}</p>
-    </div>
   );
 }

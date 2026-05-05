@@ -9,4 +9,7 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/ExperienceSession'
+export type * from './models/Message'
+export type * from './models/ChapterDefinition'
+export type * from './models/EventLog'
 export type * from './commonInputTypes'

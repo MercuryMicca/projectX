@@ -16,6 +16,11 @@ export async function GET(
 
     const session = await prisma.experienceSession.findUnique({
       where: { id: sessionID },
+      include: {
+        messages: {
+          orderBy: { createdAt: "asc" },
+        },
+      },
     });
 
     if (!session) {
@@ -58,6 +63,7 @@ export async function PATCH(
       where: { id: sessionID },
       data: {
         currentChapter: body.currentChapter,
+        awareness: body.awareness,
         missionProgress: body.missionProgress,
         stress: body.stress,
         teamTrust: body.teamTrust,

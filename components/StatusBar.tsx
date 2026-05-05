@@ -25,8 +25,8 @@ export default function StatusBar({
           key={item.label}
           className="rounded-xl border border-white/10 bg-white/5 p-4"
         >
-          <p className="text-sm text-white/50 mb-1">{item.label}</p>
-          <p className="text-xl font-semibold">{item.value}</p>
+          <p className="mb-1 text-sm text-white/50">{item.label}</p>
+          <p className="text-xl font-semibold text-white">{item.value}</p>
         </div>
       ))}
     </div>
